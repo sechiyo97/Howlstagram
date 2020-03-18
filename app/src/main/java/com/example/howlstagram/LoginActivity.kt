@@ -107,7 +107,7 @@ class LoginActivity : AppCompatActivity() {
                     if(task.isSuccessful){
                         // Third step
                         // login
-                        moveMainPage(task.result!!.user)
+                        moveMainPage(task.result?.user!!)
                     } else{
                         // show the error message
                         Toast.makeText(this, task.exception?.message, Toast.LENGTH_LONG).show()
@@ -134,7 +134,7 @@ class LoginActivity : AppCompatActivity() {
                     task ->
                     if(task.isSuccessful){
                         // login
-                        moveMainPage(task.result!!.user)
+                        moveMainPage(task.result?.user!!)
                     } else{
                         // show the error message
                         Toast.makeText(this, task.exception?.message, Toast.LENGTH_LONG).show()
@@ -147,7 +147,7 @@ class LoginActivity : AppCompatActivity() {
                     task ->
                         if(task.isSuccessful){
                             // creating user account
-                            moveMainPage(task.result!!.user)
+                            moveMainPage(task.result?.user!!)
                         } else if(task.exception?.message.isNullOrEmpty()){
                             // show the error message
                             Toast.makeText(this, task.exception?.message, Toast.LENGTH_LONG).show()
@@ -163,7 +163,7 @@ class LoginActivity : AppCompatActivity() {
                     task ->
                     if(task.isSuccessful){
                         // login
-                        moveMainPage(task.result!!.user)
+                        moveMainPage(task.result?.user!!)
                     } else{
                         // show the error message
                         Toast.makeText(this, task.exception?.message, Toast.LENGTH_LONG).show()
@@ -171,8 +171,8 @@ class LoginActivity : AppCompatActivity() {
                 }
     }
     fun moveMainPage(user: FirebaseUser){
-        if (user!=null){
-            startActivity(Intent(this, MainActivity::class.java))
-        }
+        //if (user!=null){
+        startActivity(Intent(this, MainActivity::class.java))
+        //}
     }
 }
