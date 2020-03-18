@@ -142,33 +142,39 @@ class LoginActivity : AppCompatActivity() {
                 }
     }
     fun signinAndsignup(){
-        auth?.createUserWithEmailAndPassword(email_edittext.text.toString(), password_edittext.text.toString())
-                ?.addOnCompleteListener{
-                    task ->
-                        if(task.isSuccessful){
+        if (email_edittext.text.isEmpty() || password_edittext.text.isEmpty()) {
+            Toast.makeText(this, "Please enter the username and password.", Toast.LENGTH_LONG).show()
+        } else {
+            auth?.createUserWithEmailAndPassword(email_edittext.text.toString(), password_edittext.text.toString())
+                    ?.addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
                             // creating user account
                             moveMainPage(task.result?.user!!)
-                        } else if(task.exception?.message.isNullOrEmpty()){
+                        } else if (task.exception?.message.isNullOrEmpty()) {
                             // show the error message
                             Toast.makeText(this, task.exception?.message, Toast.LENGTH_LONG).show()
-                        } else{
+                        } else {
                             // login if you have account
                             signinEmail()
                         }
-                }
+                    }
+        }
     }
     fun signinEmail(){
-        auth?.signInWithEmailAndPassword(email_edittext.text.toString(), password_edittext.text.toString())
-                ?.addOnCompleteListener{
-                    task ->
-                    if(task.isSuccessful){
-                        // login
-                        moveMainPage(task.result?.user!!)
-                    } else{
-                        // show the error message
-                        Toast.makeText(this, task.exception?.message, Toast.LENGTH_LONG).show()
+        if (email_edittext.text.isEmpty() || password_edittext.text.isEmpty()) {
+            Toast.makeText(this, "Please enter the username and password.", Toast.LENGTH_LONG).show()
+        } else {
+            auth?.signInWithEmailAndPassword(email_edittext.text.toString(), password_edittext.text.toString())
+                    ?.addOnCompleteListener { task ->
+                        if (task.isSuccessful) {
+                            // login
+                            moveMainPage(task.result?.user!!)
+                        } else {
+                            // show the error message
+                            Toast.makeText(this, task.exception?.message, Toast.LENGTH_LONG).show()
+                        }
                     }
-                }
+        }
     }
     fun moveMainPage(user: FirebaseUser){
         //if (user!=null){
