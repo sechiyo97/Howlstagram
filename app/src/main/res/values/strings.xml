@@ -2,9 +2,14 @@
     <string name="app_name">howlstagram</string>
     <string name="facebook_app_id">638124740089288</string>
     <string name="fb_login_protocol_scheme">fb638124740089288</string>
-    <string name="home">home</string>
-    <string name="user">user</string>
-    <string name="photo">photo</string>
-    <string name="alarm">alarm</string>
-    <string name="search">search</string>
+    <string name="home">Home</string>
+    <string name="account">Account</string>
+    <string name="photo">Photo Upload</string>
+    <string name="favorite">Favorite</string>
+    <string name="search">Search</string>
+    <string name="follow">Follow</string>
+    <string name="following">Following</string>
+    <string name="follower">Follower</string>
+    <string name="count_0">0</string>
+    <string name="post">Post</string>
 </resources>
