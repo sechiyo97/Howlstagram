@@ -26,9 +26,12 @@
         android:layout_height="50dp">
         <ImageView
             android:id="@+id/detailviewitem_favorite_imageview"
-            android:src="@drawable/ic_launcher_background"
+            android:src="@drawable/ic_favorite_border"
             android:layout_width="35dp"
             android:layout_height="35dp"/>
+        <Space
+            android:layout_width="10dp"
+            android:layout_height="match_parent"/>
         <ImageView
             android:id="@+id/detailviewitem_comment_imageview"
             android:src="@drawable/ic_launcher_background"
