@@ -13,6 +13,7 @@ import com.example.howlstagram.R
 import com.example.howlstagram.navigation.model.ContentDTO
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_detail.view.*
 import kotlinx.android.synthetic.main.item_detail.view.*
 
@@ -36,6 +37,8 @@ class DetailViewFragment : Fragment(){
                 querySnapshot, firebaseFirestoreException ->
                 contentDTOs.clear()
                 contentUidList.clear()
+                if (querySnapshot == null) return@addSnapshotListener // for crash
+
                 for (snapshot in querySnapshot!!.documents){
                     Log.e("DATANum?", querySnapshot.documents.size.toString());
                     var item = snapshot.toObject(ContentDTO::class.java)
@@ -86,6 +89,16 @@ class DetailViewFragment : Fragment(){
             } else {
                 // This is like status
                 viewholder.detailviewitem_favorite_imageview.setImageResource(R.drawable.ic_favorite_border)
+            }
+
+            // This code is when the profile image is clicked
+            viewholder.detailviewitem_profile_image.setOnClickListener{
+                var fragment = UserFragment()
+                var bundle = Bundle()
+                bundle.putString("destinationUid", contentDTOs[p1].uid)
+                bundle.putString("UserId", contentDTOs[p1].userId)
+                fragment.arguments = bundle
+                activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.main_content, fragment)?.commit()
             }
         }
 

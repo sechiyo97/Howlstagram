@@ -30,10 +30,12 @@ import java.util.*
 
 
 class LoginActivity : AppCompatActivity() {
+
     var auth: FirebaseAuth?= null
     var googleSignInClient : GoogleSignInClient?= null
     var GOOGLE_LOGIN_CODE = 9001
     var callbackManager : CallbackManager?= null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -89,8 +91,8 @@ class LoginActivity : AppCompatActivity() {
         LoginManager.getInstance()
                 .registerCallback(callbackManager, object : FacebookCallback<LoginResult> {
                     // Second step
-                    override fun onSuccess(result: LoginResult?) {
-                        handleFacebookAccessToken(result?.accessToken)
+                    override fun onSuccess(result: LoginResult) {
+                        handleFacebookAccessToken(result.accessToken)
                     }
 
                     override fun onCancel() {
@@ -121,24 +123,28 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        // to facebook SDK
         callbackManager?.onActivityResult(requestCode, resultCode, data)
+
+        // google login
         if(requestCode == GOOGLE_LOGIN_CODE){
             var result = Auth.GoogleSignInApi.getSignInResultFromIntent(data)
+            Log.e("RESULT", result.status.toString())
             if(result.isSuccess){
                 var account = result.signInAccount
                 // Second step
-                firebaseAuthWithGoogle(account)
+                firebaseAuthWithGoogle(account!!)
             }
         }
     }
-    fun firebaseAuthWithGoogle(account : GoogleSignInAccount?){
-        var credential = GoogleAuthProvider.getCredential(account?.idToken,null)
+    fun firebaseAuthWithGoogle(account : GoogleSignInAccount){
+        var credential = GoogleAuthProvider.getCredential(account.idToken,null)
         auth?.signInWithCredential(credential)
                 ?.addOnCompleteListener{
                     task ->
                     if(task.isSuccessful){
                         // login
-                        moveMainPage(task.result?.user!!)
+                        moveMainPage(auth?.currentUser)
                     } else{
                         // show the error message
                         Toast.makeText(this, task.exception?.message, Toast.LENGTH_LONG).show()
@@ -153,7 +159,7 @@ class LoginActivity : AppCompatActivity() {
                     ?.addOnCompleteListener { task ->
                         if (task.isSuccessful) {
                             // creating user account
-                            moveMainPage(task.result?.user!!)
+                            moveMainPage(auth?.currentUser)
                         } else if (task.exception?.message.isNullOrEmpty()) {
                             // show the error message
                             Toast.makeText(this, task.exception?.message, Toast.LENGTH_LONG).show()
@@ -172,7 +178,7 @@ class LoginActivity : AppCompatActivity() {
                     ?.addOnCompleteListener { task ->
                         if (task.isSuccessful) {
                             // login
-                            moveMainPage(task.result?.user!!)
+                            moveMainPage(auth?.currentUser)
                         } else {
                             // show the error message
                             Toast.makeText(this, task.exception?.message, Toast.LENGTH_LONG).show()
