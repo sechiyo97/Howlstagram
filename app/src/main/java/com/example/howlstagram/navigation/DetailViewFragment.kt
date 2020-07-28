@@ -96,7 +96,7 @@ class DetailViewFragment : Fragment(){
                 var fragment = UserFragment()
                 var bundle = Bundle()
                 bundle.putString("destinationUid", contentDTOs[p1].uid)
-                bundle.putString("UserId", contentDTOs[p1].userId)
+                bundle.putString("userId", contentDTOs[p1].userId)
                 fragment.arguments = bundle
                 activity?.supportFragmentManager?.beginTransaction()?.replace(R.id.main_content, fragment)?.commit()
             }

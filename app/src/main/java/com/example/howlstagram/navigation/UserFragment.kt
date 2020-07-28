@@ -49,13 +49,13 @@ class UserFragment : Fragment(){
             //OtherUserPage
             fragmentView?.account_btn_follow_signout?.text = getString(R.string.follow)
             var mainactivity = (activity as MainActivity)
+            mainactivity?.toolbar_title_image?.visibility = View.GONE
+            mainactivity?.toolbar_username?.visibility = View.VISIBLE
+            mainactivity?.toolbar_btn_back?.visibility = View.VISIBLE
             mainactivity?.toolbar_username?.text = arguments?.getString("userId")
             mainactivity?.toolbar_btn_back?.setOnClickListener {
                 mainactivity.bottom_navigation.selectedItemId = R.id.action_home
             }
-            mainactivity?.toolbar_title_image?.visibility = View.GONE
-            mainactivity?.toolbar_username?.visibility = View.VISIBLE
-            mainactivity?.toolbar_btn_back?.visibility = View.VISIBLE
         }
         fragmentView?.account_recyclerview?.adapter = UserFragmentRecyclerViewAdapter() // need check : why fragmentView.view.*?
         fragmentView?.account_recyclerview?.layoutManager = GridLayoutManager(activity!!, 3)
