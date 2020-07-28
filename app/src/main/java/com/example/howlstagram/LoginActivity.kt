@@ -57,7 +57,11 @@ class LoginActivity : AppCompatActivity() {
         //printHashKey()
         callbackManager = CallbackManager.Factory.create()
     }
-    /*
+    override fun onStart() {
+        super.onStart()
+        moveMainPage(auth?.currentUser)
+    }
+
     fun printHashKey() {
         try {
             val info = packageManager.getPackageInfo(packageName, PackageManager.GET_SIGNATURES)
@@ -73,7 +77,7 @@ class LoginActivity : AppCompatActivity() {
             Log.e("TAG", "printHashKey()", e)
         }
 
-    }*/
+    }
     fun googleLogin(){
         var signInIntent = googleSignInClient?.signInIntent
         startActivityForResult(signInIntent, GOOGLE_LOGIN_CODE)
@@ -176,9 +180,10 @@ class LoginActivity : AppCompatActivity() {
                     }
         }
     }
-    fun moveMainPage(user: FirebaseUser){
-        //if (user!=null){
-        startActivity(Intent(this, MainActivity::class.java))
-        //}
+    fun moveMainPage(user: FirebaseUser?){
+        if (user!=null){
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        }
     }
 }
