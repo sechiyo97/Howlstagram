@@ -7,7 +7,7 @@
         android:layout_height="50dp">
         <ImageView
             android:id="@+id/detailviewitem_profile_image"
-            android:src="@drawable/ic_launcher_background"
+            android:src="@drawable/ic_account"
             android:layout_width="35dp"
             android:layout_height="35dp"/>
         <TextView
@@ -34,7 +34,7 @@
             android:layout_height="match_parent"/>
         <ImageView
             android:id="@+id/detailviewitem_comment_imageview"
-            android:src="@drawable/ic_launcher_background"
+            android:src="@drawable/ic_chat_black"
             android:layout_width="35dp"
             android:layout_height="35dp"/>
     </LinearLayout>

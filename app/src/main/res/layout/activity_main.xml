@@ -10,7 +10,8 @@
         app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/my_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="35dp">
+        android:layout_height="45dp"
+        android:paddingVertical="5dp">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -18,7 +19,7 @@
                 android:id="@+id/toolbar_btn_back"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:src="@drawable/ic_favorite"/>
+                android:src="@drawable/ic_arrow_back"/>
             <TextView
                 android:text="UserID"
                 android:textSize="16sp"
@@ -29,11 +30,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"/>
             <ImageView
-                android:layout_toRightOf="@id/toolbar_username"
                 android:id="@+id/toolbar_title_image"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:src="@drawable/ic_favorite_border"/>
+                android:src="@drawable/logo_title"/>
         </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
 
