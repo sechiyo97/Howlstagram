@@ -8,6 +8,7 @@
     <string name="favorite">Favorite</string>
     <string name="search">Search</string>
     <string name="follow">Follow</string>
+    <string name="follow_cancel">Follow Cancel</string>
     <string name="following">Following</string>
     <string name="follower">Follower</string>
     <string name="count_0">0</string>
