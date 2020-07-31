@@ -21,10 +21,16 @@
         android:hint="Password" />
 
     <Button
+        android:id="@+id/email_createaccountbutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CREATE ACCOUNT"/>
+
+    <Button
         android:id="@+id/email_loginbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="SIGNUP OR SIGNIN BY EMAIL"/>
+        android:text="SIGNIN BY EMAIL"/>
 
     <Button
         android:id="@+id/facebook_sign_in_button"

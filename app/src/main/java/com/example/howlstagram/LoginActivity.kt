@@ -40,8 +40,11 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         auth = FirebaseAuth.getInstance()
+        email_createaccountbutton.setOnClickListener{
+            createAccount()
+        }
         email_loginbutton.setOnClickListener{
-            createAndLoginEmail()
+            signinEmail()
         }
         google_sign_in_button.setOnClickListener{
             // First step
@@ -151,7 +154,7 @@ class LoginActivity : AppCompatActivity() {
                     }
                 }
     }
-    fun createAndLoginEmail(){
+    fun createAccount(){
         if (email_edittext.text.isEmpty() || password_edittext.text.isEmpty()) {
             Toast.makeText(this, "Please enter the username and password.", Toast.LENGTH_LONG).show()
         } else {
@@ -163,9 +166,6 @@ class LoginActivity : AppCompatActivity() {
                         } else if (!task.exception?.message.isNullOrEmpty()) {
                             // show the error message
                             Toast.makeText(this, task.exception?.message, Toast.LENGTH_LONG).show()
-                        } else {
-                            // login if you have account
-                            signinEmail()
                         }
                     }
         }

@@ -12,6 +12,7 @@ import android.view.View
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.example.howlstagram.navigation.*
+import com.example.howlstagram.navigation.util.FcmPush
 import com.google.android.gms.tasks.Task
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
@@ -86,7 +87,11 @@ class MainActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         bottom_navigation.selectedItemId = R.id.action_home
         registerPushToken()
     }
-
+/* this is test code
+    override fun onStop(){
+        super.onStop()
+        FcmPush.instance.sendMessage("Lagz4QmPlvfq4Dty9RAY7g2tC9b2", "hi","bye")
+    }*/
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
